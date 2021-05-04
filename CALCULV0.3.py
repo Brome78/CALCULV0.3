@@ -2320,7 +2320,7 @@ def principal():
     chap4Button.grid(row=2,column=2)
     chap5Button=Button(framePrincipal, text="5.Triangles rectangles", command=chap5Menu, width=20, pady=5)
     chap5Button.grid(row=3,column=1)
-    chap6Button=Button(framePrincipal, text="6.Dérivation", command=chap6Menu)
+    chap6Button=Button(framePrincipal, text="6.Dérivation", command=chap6Menu, width=20, pady=5)
     chap6Button.grid(row=3,column=2)
     #chap11Button=Button(framePrincipal, text="11.Equation", command=chap11Menu)
     #chap7Button=Button(framePrincipal, text="7.Espaces", command=chap7Menu)
