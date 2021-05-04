@@ -2,6 +2,9 @@ from math import *
 from tkinter import *
 from tkinter.messagebox import *
 import turtle
+import tkinter as tk
+from tkinter import ttk
+from sympy import *
 
 fontTitle=("Comic Sans MS", 24, "bold underline")
 
@@ -1464,8 +1467,845 @@ def principal():
         retourChap2Button=Button(frameChap2, text="Retour", command=retourChap2, width=20, background="blue", pady=5)
         retourChap2Button.grid(row=1, column=10)
     
+    def chap3Menu():
+        framePrincipal.destroy()
+        framePremier=Frame(fenetrePrincipal)
+        framePremier.pack()
+
+        entree=Spinbox(framePremier, textvariable=int, width=50, from_=0, to=1000000)
+        entree.grid(row=1, column=1)
+        
+        def estPremier():
+            n=int(entree.get())
+            print(n)
+            for i in range(2, n+1):
+                if n%i==0:
+                    valeurResultat.set(str(n)+" n'est pas premier")
+                else:
+                    valeurResultat.set(str(n)+" est premier")
+        
+        valeurResultat= StringVar()
+        Resultat=Label(framePremier, textvariable=valeurResultat)
+        Resultat.grid(row=2, column=1)
+        
+        estPremierButton=Button(framePremier, text="Vérifier", command=estPremier)
+        estPremierButton.grid(row=1, column=2)
+    
+    def chap4Menu():
+        framePrincipal.destroy()
+        frameChap4=Frame(fenetrePrincipal)
+        frameChap4.pack()
+
+        def distance():
+            frameChap4.pack_forget()
+            frameDistance=Frame(fenetrePrincipal)
+            frameDistance.pack()
+
+            Titre=Label(frameDistance, text="1. Conversion de Distance")
+            Titre.configure(font=fontTitle)
+            Titre.grid(row=0, column=1)
+
+            resultatConvertis=StringVar()
+
+            def valider():
+                entree2.grid_forget()
+
+                if distance1.get() == 'kilomètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**5))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**9))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'hectomètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**5))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**11))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'décamètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**7))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                    
+                if distance1.get() == 'mètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**9))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'décimètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**5))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'centimètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-5))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**7))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'millimètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-5))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-1))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'micromètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-9))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-7))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-5))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**3))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if distance1.get() == 'micromètre':
+                    if distance2.get() == 'kilomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'hectomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-11))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décamètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'mètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-9))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'décimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'centimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-7))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'millimètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'micromètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**-3))
+                        entree2.grid(row=3,column=3)
+                    elif distance2.get() == 'nanomètre':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+
+                
+            
+            distance1=ttk.Combobox(frameDistance)
+            distance1.grid(row=2,column=1)
+
+            distance1['values']=('kilomètre',
+                                'hectomètre',
+                                'décamètre',
+                                'mètre',
+                                'décimètre',
+                                'centimètre',
+                                'millimètre',
+                                'micromètre',
+                                'nanomètre',
+                                '         ')
+            distance1.current(9)
+
+            distance2=ttk.Combobox(frameDistance)
+            distance2.grid(row=2,column=3)
+
+            distance2['values']=('kilomètre',
+                                'hectomètre',
+                                'décamètre',
+                                'mètre',
+                                'décimètre',
+                                'centimètre',
+                                'millimètre',
+                                'micromètre',
+                                'nanomètre',
+                                '          ')
+            distance2.current(9)
+
+            fleche1=Label(frameDistance, text="=>")
+            fleche1.grid(row=2,column=2)
+            fleche2=Label(frameDistance, text="=>")
+            fleche2.grid(row=3,column=2)
+
+            entree1=Spinbox(frameDistance, textvariable=int, width=50, from_=0, to=1000000)
+            entree1.grid(row=3,column=1)
+
+            
+
+            entree2=Label(frameDistance, textvariable=resultatConvertis, width=50)
+            entree2.grid(row=3,column=3)
+
+            valider=Button(frameDistance, text="Valider", command=valider)
+            valider.grid(row=3, column=4)
+
+            def retourDistance():
+                frameDistance.destroy()
+                chap4Menu()
+                
+            retourDistanceButton=Button(frameDistance, text="Retour", command=retourDistance, width=20, background="blue", pady=5)
+            retourDistanceButton.grid(row=2, column=10)
+        
+        def surface():
+            frameChap4.pack_forget()
+            frameSurface=Frame(fenetrePrincipal)
+            frameSurface.pack()
+
+            Titre=Label(frameSurface, text="2. Conversion de Surface")
+            Titre.configure(font=fontTitle)
+            Titre.grid(row=0, column=1)
+
+            resultatConvertis=StringVar()
+
+            def valider():
+                entree2.grid_forget()
+
+                
+
+                if surface1.get() == 'kilomètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**18))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**24))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'hectomètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10*8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**16))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**22))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'décamètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**14))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**20))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                    
+                if surface2.get() == 'mètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**18))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'décimètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**16))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'centimètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**14))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'millimètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'micromètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-18))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-16))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-14))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+                
+                if surface1.get() == 'micromètre²':
+                    if surface2.get() == 'kilomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-24))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-22))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décamètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-20))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-18))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'décimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-16))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'centimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-14))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'millimètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'micromètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'nanomètre²':
+                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        entree2.grid(row=3,column=3)
+                    else :
+                        resultatConvertis.set("ERROR")
+                        entree2.grid(row=3,column=3)
+
+                
+            
+            surface1=ttk.Combobox(frameSurface)
+            surface1.grid(row=2,column=1)
+
+            surface1['values']=('kilomètre²',
+                                'hectomètre²',
+                                'décamètre²',
+                                'mètre²',
+                                'décimètre²',
+                                'centimètre²',
+                                'millimètre²',
+                                'micromètre²',
+                                'nanomètre²',
+                                '         ')
+            surface1.current(9)
+
+            surface2=ttk.Combobox(frameSurface)
+            surface2.grid(row=2,column=3)
+
+            surface2['values']=('kilomètre²',
+                                'hectomètre²',
+                                'décamètre²',
+                                'mètre²',
+                                'décimètre²',
+                                'centimètre²',
+                                'millimètre²',
+                                'micromètre²',
+                                'nanomètre²',
+                                '          ')
+            surface2.current(9)
+
+            fleche1=Label(frameSurface, text="=>")
+            fleche1.grid(row=2,column=2)
+            fleche2=Label(frameSurface, text="=>")
+            fleche2.grid(row=3,column=2)
+
+            entree1=Spinbox(frameSurface, textvariable=int, width=50, from_=0, to=1000000)
+            entree1.grid(row=3,column=1)
+
+            
+
+            entree2=Label(frameSurface, textvariable=resultatConvertis, width=50)
+            entree2.grid(row=3,column=3)
+
+            valider=Button(frameSurface, text="Valider", command=valider)
+            valider.grid(row=3, column=4)
+
+            def retourSurface():
+                frameSurface.destroy()
+                chap4Menu()
+                
+            retourSurfaceButton=Button(frameSurface, text="Retour", command=retourSurface, width=20, background="blue", pady=5)
+            retourSurfaceButton.grid(row=2, column=10)
+        
+
+        distanceButton=Button(frameChap4, command=distance, text="Distance", width=20, pady=5)
+        distanceButton.grid(row=1,column=1)
+        surfaceButton=Button(frameChap4, command=surface, text="Surface", width=20, pady=5)
+        surfaceButton.grid(row=1,column=2)
+
+        def retourChap4():
+            frameChap4.destroy()
+            principal()
+            
+        retourChap4Button=Button(frameChap4, text="Retour", command=retourChap4, width=20, background="blue", pady=5)
+        retourChap4Button.grid(row=1, column=10)
+
+    def chap5Menu():
+        framePrincipal.destroy()
+        frameChap5=Frame(fenetrePrincipal)
+        frameChap5.pack()
+
+        Titre=Label(frameChap5, text="5. Triangle rectangles")
+        Titre.configure(font=fontTitle)
+        Titre.grid(row=0, column=1)
 
 
+
+        def valider():
+            a=float(entreeA.get())
+            b=float(entreeB.get())
+            c=float(entreeC.get())
+            if a**2+b**2==c**2:
+                valeurResultat.set("Le triangle est rectangle")
+            else:
+                valeurResultat.set("Le triangle n'est pas rectangle")
+
+        valeurResultat=StringVar()
+        Resultat=Label(frameChap5, textvariable=valeurResultat)
+        Resultat.grid(row=3,column=2)
+
+        labelA=Label(frameChap5, text="Premier coté")
+        labelA.grid(row=1,column=1)
+        entreeA=Spinbox(frameChap5, textvariable=int, width=50, from_=0, to=1000000)
+        entreeA.grid(row=2,column=1)
+        
+        labelB=Label(frameChap5, text="Second coté")
+        labelB.grid(row=1,column=2)
+        entreeB=Spinbox(frameChap5, textvariable=int, width=50, from_=0, to=1000000)
+        entreeB.grid(row=2,column=2)
+
+        labelC=Label(frameChap5, text="Plus long coté")
+        labelC.grid(row=1,column=3)
+        entreeC=Spinbox(frameChap5, textvariable=int, width=50, from_=0, to=1000000)
+        entreeC.grid(row=2,column=3)
+
+        validerButton=Button(frameChap5, text="Valider", command=valider, width=10)
+        validerButton.grid(row=2,column=4)
+
+        def retourChap5():
+            frameChap5.destroy()
+            principal()
+            
+        retourChap5Button=Button(frameChap5, text="Retour", command=retourChap5, width=20, background="blue", pady=5)
+        retourChap5Button.grid(row=1, column=10)
+    
+    def chap6Menu():
+        framePrincipal.destroy()
+        frameChap6=Frame(fenetrePrincipal)
+        frameChap6.pack()
+
+        Titre=Label(frameChap6, text="6. Dérivation")
+        Titre.configure(font=fontTitle)
+        Titre.grid(row=0, column=1)
+
+        x=Symbol('x')
+
+        def valider():
+            fstr=str(fonctionsEntree.get())
+            f=sympify(fstr)
+            f_prime=f.diff(x)
+            resultatValeur.set(f_prime)
+
+        resultatValeur=StringVar()
+
+        fonctionsEntree=Entry(frameChap6, width=20)
+        fonctionsEntree.grid(row=1,column=2)
+        fonctionsDerive=Label(frameChap6, textvariable=resultatValeur, width=20, pady=5)
+        fonctionsDerive.grid(row=3,column=2)
+        validerButton=Button(frameChap6, text="Valider", command=valider, width=20, pady=5)
+        validerButton.grid(row=1,column=3)
+
+        def retourChap6():
+            frameChap6.destroy()
+            principal()
+            
+        retourChap5Button=Button(frameChap6, text="Retour", command=retourChap6, width=20, background="blue", pady=5)
+        retourChap5Button.grid(row=1, column=10)
 
 
     framePrincipal=Frame(fenetrePrincipal, borderwidth=2)
@@ -1474,15 +2314,20 @@ def principal():
     chap1Button.grid(row=1,column=1)
     chap2Button=Button(framePrincipal, text="2.Probabilité", command=chap2Menu, width=20, pady=5)
     chap2Button.grid(row=1,column=2)
-    #chap3Button=Button(framePrincipal, text="4.Nombres premier", command=chap4Menu)
-    #chap5Button=Button(framePrincipal, text="5.Triangles rectangles", command=chap5Menu)
-    #chap6Button=Button(framePrincipal, text="6.Equation", command=chap6Menu)
+    chap3Button=Button(framePrincipal, text="3.Nombres premier", command=chap3Menu, width=20, pady=5)
+    #chap3Button.grid(row=2,column=1)
+    chap4Button=Button(framePrincipal, text="4.Conversions", command=chap4Menu, width=20, pady=5)
+    chap4Button.grid(row=2,column=2)
+    chap5Button=Button(framePrincipal, text="5.Triangles rectangles", command=chap5Menu, width=20, pady=5)
+    chap5Button.grid(row=3,column=1)
+    chap6Button=Button(framePrincipal, text="6.Dérivation", command=chap6Menu)
+    chap6Button.grid(row=3,column=2)
+    #chap11Button=Button(framePrincipal, text="11.Equation", command=chap11Menu)
     #chap7Button=Button(framePrincipal, text="7.Espaces", command=chap7Menu)
     #chap8Button=Button(framePrincipal, text="8.Théorème de Thalès", command=chap8Menu)
     #chap9Button=Button(framePrincipal, text="9.Orthogonalité", command=chap9Menu)
     #chap10Button=Button(framePrincipal, text="10.Trigonométrie", command=chap10Menu)
-    #chap11Button=Button(framePrincipal, text="11.Dérivation", command=chap11Menu)
-    #chap12Button=button(framePrincipal, text="12.Conversions", command=chap12Menu)
+    
 
 fenetrePrincipal = Tk()
 fenetrePrincipal.title('CALCUL V3.0')
