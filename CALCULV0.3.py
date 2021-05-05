@@ -32,8 +32,9 @@ def principal():
         def right(a):
             t.right(a)
 
-        frameDessin=Frame(fenetrePrincipal)
-        canvas=Canvas(frameDessin, width=1000, height=550)
+        frameDessin=LabelFrame(fenetrePrincipal, text="Dessin")
+        frameDessin.configure(font=fontTitle)
+        canvas=Canvas(frameDessin, width=1000, height=350)
         canvas.grid(row=1, column=1)
         t=turtle.RawTurtle(canvas)
         t.pensize(1)
@@ -76,10 +77,10 @@ def principal():
         
         #Taille crayon
 
-        frameTaille=Frame(frameDessin)
+        frameTaille=LabelFrame(frameDessin,text="Taille de trait :")
         frameTaille.grid(row=1, column=3)
         
-        penSizeSelector=Scale(frameTaille, variable=int, label="Taille du crayon",  from_=1, to=25, resolution=1)
+        penSizeSelector=Scale(frameTaille, variable=int,  from_=1, to=25, resolution=1)
         penSizeSelector.grid(row=1, column=3)
         
         def penSizeSettings():
@@ -91,13 +92,13 @@ def principal():
         
         #Couleur
 
-        frameColorDessin=Frame(frameDessin)
+        frameColorDessin=LabelFrame(frameDessin, text="Couleur de trait :")
         frameColorDessin.grid(row=2, column=3)
+        frameColorFillDessin=LabelFrame(frameDessin, text="Couleur de remplissage :")
+        frameColorFillDessin.grid(row=3, column=3)
 
         #Bouton de trait
 
-        couleurTrait=Label(frameColorDessin, text="Couleurs de trait :")
-        couleurTrait.grid(row=2, column=2)
         blue=Button(frameColorDessin, background="blue", command=colorBlue, width=6)
         blue.grid(row=2, column=4)
         red=Button(frameColorDessin, background="red", command=colorRed, width=6)
@@ -113,19 +114,17 @@ def principal():
 
         #Bouton de fond
         
-        couleurFond=Label(frameColorDessin, text="Couleurs de remplissage :")
-        couleurFond.grid(row=3, column=2)
-        blue=Button(frameColorDessin, background="blue", command=colorFillBlue, width=6)
+        blue=Button(frameColorFillDessin, background="blue", command=colorFillBlue, width=6)
         blue.grid(row=3, column=4)
-        red=Button(frameColorDessin, background="red", command=colorFillRed, width=6)
+        red=Button(frameColorFillDessin, background="red", command=colorFillRed, width=6)
         red.grid(row=3, column=5)
-        green=Button(frameColorDessin, background="green", command=colorFillGreen, width=6)
+        green=Button(frameColorFillDessin, background="green", command=colorFillGreen, width=6)
         green.grid(row=3, column=6)
-        black=Button(frameColorDessin, background="black", command=colorFillBlack, width=6)
+        black=Button(frameColorFillDessin, background="black", command=colorFillBlack, width=6)
         black.grid(row=3, column=7)
-        grey=Button(frameColorDessin, background="grey", command=colorFillGrey, width=6)
+        grey=Button(frameColorFillDessin, background="grey", command=colorFillGrey, width=6)
         grey.grid(row=3, column=8)
-        cyan=Button(frameColorDessin, background="cyan", command=colorFillCyan, width=6)
+        cyan=Button(frameColorFillDessin, background="cyan", command=colorFillCyan, width=6)
         cyan.grid(row=3, column=9)
 
         def perimetre():
@@ -140,14 +139,11 @@ def principal():
 
             def carre():
                 framePerimetre.destroy()
-                frameCarre=Frame(fenetrePrincipal)
+                frameCarre=LabelFrame(fenetrePrincipal, text="1. Périmètre d'un carré", padx=450)
+                frameCarre.configure(font=fontTitle)
                 frameCarre.pack(side=TOP)
 
                 frameDessin.pack()
-
-                Titre=Label(frameCarre, text="1. Périmètre d'un carré")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 entree=Spinbox(frameCarre, textvariable=int, width=50, from_=0, to=1000000)
                 entree.grid(row=1,column=1)
@@ -158,7 +154,7 @@ def principal():
                     c=float(entree.get())
                     if c != 0:
                         perimetreCarre.set("Perimetre = " + str(c*4) + " unités")
-                        if (c) < 401:
+                        if (c) < 176:
                             t.pendown()
                             t.begin_fill()
                             forward(c)
@@ -200,12 +196,9 @@ def principal():
 
             def rectangle():
                 framePerimetre.destroy()
-                frameRectangle=Frame(fenetrePrincipal)  
+                frameRectangle=LabelFrame(fenetrePrincipal, text="2. Périmètre d'un rectangle", padx=450)
+                frameRectangle.configure(font=fontTitle)  
                 frameRectangle.pack(side=TOP)
-
-                Titre=Label(frameRectangle, text="2. Périmètre d'un rectangle")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 longueur=Label(frameRectangle, text="Longueur =")
                 longueur.grid(row=1, column=1)
@@ -226,7 +219,7 @@ def principal():
                     L=float(entreeL.get())
                     if l and L != 0:
                         perimetreRectangle.set("Perimètre = " + str(l*2+L*2)+" unités")
-                        if (l or L) < 401:
+                        if (l or L) < 176:
                             t.pendown()
                             t.begin_fill()
                             forward(l)
@@ -265,12 +258,9 @@ def principal():
 
             def cercle():
                 framePerimetre.destroy()
-                frameCercle=Frame(fenetrePrincipal)
+                frameCercle=LabelFrame(fenetrePrincipal, text="3. Périmètre d'un cercle", padx=400)
+                frameCercle.configure(font=fontTitle)
                 frameCercle.pack(side=TOP)
-
-                Titre=Label(frameCercle, text="3. Périmètre d'un cercle")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 rayon=Label(frameCercle, text="Rayon =")
                 rayon.grid(row=1, column=1)
@@ -284,7 +274,7 @@ def principal():
                     r=float(entree.get())
                     if r != 0:
                         perimetreCercle.set("Perimetre = " + str(r*2*pi)+ " unités")
-                        if (r) < 201:
+                        if (r) < 84:
                             t.pendown()
                             t.begin_fill()
                             t.circle(r, 360)
@@ -345,12 +335,9 @@ def principal():
 
             def carre():
                 frameAire.destroy()
-                frameCarre=Frame(fenetrePrincipal)
+                frameCarre=LabelFrame(fenetrePrincipal, text="1. Aire d'un Carré")
+                frameCarre.configure(font=fontTitle)
                 frameCarre.pack(side=TOP)
-
-                Titre=Label(frameCarre, text="1. Aire d'un carré")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 entree=Spinbox(frameCarre, textvariable=int, width=50, from_=0, to=1000000)
                 entree.grid(row=1,column=1)
@@ -363,7 +350,7 @@ def principal():
                     c=float(entree.get())
                     if c != 0:
                         aireCarre.set("Aire = " + str(float(entree.get())**2)+" unités²")
-                        if (c) < 401:
+                        if (c) < 176:
                             t.pendown()
                             t.begin_fill()
                             forward(c)
@@ -400,12 +387,9 @@ def principal():
 
             def rectangle():
                 frameAire.destroy()
-                frameRectangle=Frame(fenetrePrincipal)  
+                frameRectangle=LabelFrame(fenetrePrincipal, text="2. Aire d'un Rectangle")
+                frameRectangle.configure(font=fontTitle)
                 frameRectangle.pack(side=TOP)
-
-                Titre=Label(frameRectangle, text="2. Aire d'un rectangle")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 longueur=Label(frameRectangle, text="Longueur =")
                 longueur.grid(row=1, column=1)
@@ -426,7 +410,7 @@ def principal():
                     L=float(entreeL.get())
                     if l and L != 0:
                         aireRectangle.set("Aire = " + str(l*L)+" unités²")
-                        if (l or L) < 401:
+                        if (l or L) < 176:
                             t.pendown()
                             t.begin_fill()
                             forward(l)
@@ -463,12 +447,9 @@ def principal():
 
             def cercle():
                 frameAire.destroy()
-                frameCercle=Frame(fenetrePrincipal)
+                frameCercle=LabelFrame(fenetrePrincipal, text="3. Aire d'un cercle")
+                frameCercle.configure(font=fontTitle)
                 frameCercle.pack(side=TOP)
-
-                Titre=Label(frameCercle, text="3. Aire d'un cercle")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 rayon=Label(frameCercle, text="Rayon =")
                 rayon.grid(row=1, column=1)
@@ -484,7 +465,7 @@ def principal():
                     r=float(entree.get())
                     if r != 0:
                         aireCercle.set("Aire = " + str((r**2)*pi)+" unités²")
-                        if (r) < 201:
+                        if (r) < 176:
                             t.pendown()
                             t.begin_fill()
                             t.circle(r, 360)
@@ -514,12 +495,9 @@ def principal():
 
             def triangle():
                 frameAire.destroy()
-                frameTriangle=Frame(fenetrePrincipal)
+                frameTriangle=LabelFrame(fenetrePrincipal, text="4. Aire d'un triangle")
+                frameTriangle.configure(font=fontTitle)
                 frameTriangle.pack(side=TOP)
-
-                Titre=Label(frameTriangle, text="4. Aire d'un triangle")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 base=Label(frameTriangle, text="Longueur de la Base =")
                 base.grid(row=1, column=1)
@@ -558,12 +536,9 @@ def principal():
 
             def parrallelogramme():
                 frameAire.destroy()
-                frameParrallelogramme=Frame(fenetrePrincipal)  
+                frameParrallelogramme=LabelFrame(fenetrePrincipal, text="5. Aire d'un parrallélogramme")
+                frameParrallelogramme.configure(font=fontTitle)
                 frameParrallelogramme.pack(side=TOP)
-
-                Titre=Label(frameParrallelogramme, text="5. Aire d'un parrallelogramme")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 base=Label(frameParrallelogramme, text="Longueur de la Base =")
                 base.grid(row=1, column=1)
@@ -582,7 +557,7 @@ def principal():
                     H=float(entreeH.get())
                     if B and H != 0:
                         aireParrallelogramme.set("Aire = " + str(B*H)+" unités²")
-                        if B or H < 300:
+                        if B or H < 176:
                             for i in range (2):
                                 t.forward(B)
                                 t.left(120)
@@ -613,12 +588,9 @@ def principal():
 
             def losange():
                 frameAire.destroy()
-                frameLosange=Frame(fenetrePrincipal)  
+                frameLosange=LabelFrame(fenetrePrincipal, text="6. Aire d'un losange")
+                frameLosange.configure(font=fontTitle)
                 frameLosange.pack(side=TOP)
-
-                Titre=Label(frameLosange, text="6. Aire d'un losange")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 diagonal1=Label(frameLosange, text="Diagonale 1 =")
                 diagonal1.grid(row=1, column=1)
@@ -656,12 +628,9 @@ def principal():
 
             def trapeze():
                 frameAire.destroy()
-                frameTrapeze=Frame(fenetrePrincipal)  
+                frameTrapeze=LabelFrame(fenetrePrincipal, text="7. Aire d'un trapèze")
+                frameTrapeze.configure(font=fontTitle)
                 frameTrapeze.pack(side=TOP)
-
-                Titre=Label(frameTrapeze, text="7. Aire d'un trapèze")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 petitcote=Label(frameTrapeze, text="Petit Côté =")
                 petitcote.grid(row=1, column=1)
@@ -704,12 +673,9 @@ def principal():
 
             def cube():
                 frameAire.destroy()
-                frameCube=Frame(fenetrePrincipal)
+                frameCube=LabelFrame(fenetrePrincipal, text="8. Aire d'un cube")
+                frameCube.configure(font=fontTitle)
                 frameCube.pack(side=TOP)
-
-                Titre=Label(frameCube, text="8. Aire d'un cube")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 entree=Spinbox(frameCube, textvariable=int, width=50, from_=0, to=1000000)
                 entree.grid(row=1,column=1)
@@ -720,7 +686,7 @@ def principal():
                     c=float(entree.get())
                     if c != 0:
                         aireCube.set("Aire = " + str((c**2)*6)+" unités²")
-                        if c<200:
+                        if c<176:
                             t.goto(0,0)
                             t.pendown()
                             for i in range(4):
@@ -766,12 +732,9 @@ def principal():
 
             def pave():
                 frameAire.destroy()
-                framePave=Frame(fenetrePrincipal)  
+                framePave=LabelFrame(fenetrePrincipal, text="9. Aire d'un pavé droit") 
+                framePave.configure(font=fontTitle) 
                 framePave.pack(side=TOP)
-
-                Titre=Label(framePave, text="9. Aire d'un pavé droit")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 longueur=Label(framePave, text="Longueur =")
                 longueur.grid(row=1, column=1)
@@ -797,7 +760,7 @@ def principal():
                     if l and L and H != 0:
                         airePave.set("Aire = " + str(2*(l*L+L*H+l*H))+" unités²")
 
-                        if l or L or H < 200:
+                        if l or L or H < 176:
 
                             t.goto(0,0)
                             t.pendown()
@@ -848,12 +811,9 @@ def principal():
 
             def cylindre():
                 frameAire.destroy()
-                frameCylindre=Frame(fenetrePrincipal)
+                frameCylindre=LabelFrame(fenetrePrincipal, text="10. Aire d'un cylindre")
+                frameCylindre.configure(font=fontTitle)
                 frameCylindre.pack(side=TOP)
-
-                Titre=Label(frameCylindre, text="10. Aire d'un cylindre")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 rayon=Label(frameCylindre, text="Rayon =")
                 rayon.grid(row=1, column=1)
@@ -891,12 +851,9 @@ def principal():
 
             def sphere():
                 frameAire.destroy()
-                frameSphere=Frame(fenetrePrincipal)
+                frameSphere=LabelFrame(fenetrePrincipal, text="11. Aire d'une sphère")
+                frameSphere.configure(font=fontTitle)
                 frameSphere.pack(side=TOP)
-
-                Titre=Label(frameSphere, text="11. Aire d'une sphère")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 entree=Spinbox(frameSphere, textvariable=int, width=50, from_=0, to=1000000)
                 entree.grid(row=1,column=1)
@@ -968,12 +925,9 @@ def principal():
 
             def cube():
                 frameVolume.destroy()
-                frameCube=Frame(fenetrePrincipal)
+                frameCube=LabelFrame(fenetrePrincipal, text="1. Volume d'un cube")
+                frameCube.configure(font=fontTitle)
                 frameCube.pack(side=TOP)
-
-                Titre=Label(frameCube, text="1.Volume d'un cube")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 entree=Spinbox(frameCube, textvariable=int, width=50, from_=0, to=1000000)
                 entree.grid(row=1,column=1)
@@ -984,7 +938,7 @@ def principal():
                     c=float(entree.get())
                     if c != 0:
                         aireCube.set("Aire = " + str((c**2)*6)+" unités²")
-                        if c<200:
+                        if c<176:
                             t.goto(0,0)
                             t.pendown()
                             for i in range(4):
@@ -1030,12 +984,9 @@ def principal():
 
             def pave():
                 frameVolume.destroy()
-                framePave=Frame(fenetrePrincipal)  
+                framePave=LabelFrame(fenetrePrincipal, text="2. Volume d'un pavé droit") 
+                framePave.configure(font=fontTitle) 
                 framePave.pack(side=TOP)
-
-                Titre=Label(framePave, text="2.Volume d'un pavé droit")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 longueur=Label(framePave, text="Longueur =")
                 longueur.grid(row=1, column=1)
@@ -1061,7 +1012,7 @@ def principal():
                     if l and L and H != 0:
                         airePave.set("Aire = " + str(2*(l*L+L*H+l*H))+" unités²")
 
-                        if l or L or H < 200:
+                        if l or L or H < 176:
 
                             t.goto(0,0)
                             t.pendown()
@@ -1111,12 +1062,9 @@ def principal():
 
             def cylindre():
                 frameVolume.destroy()
-                frameCylindre=Frame(fenetrePrincipal)
+                frameCylindre=LabelFrame(fenetrePrincipal, text="3. Volume d'un cylindre")
+                frameCylindre.configure(font=fontTitle)
                 frameCylindre.pack(side=TOP)
-
-                Titre=Label(frameCylindre, text="3.Volume d'un cylindre")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 rayon=Label(frameCylindre, text="Rayon =")
                 rayon.grid(row=1, column=1)
@@ -1153,12 +1101,9 @@ def principal():
 
             def pyramidecarre():
                 frameVolume.destroy()
-                framePyramideCarre=Frame(fenetrePrincipal)
+                framePyramideCarre=LabelFrame(fenetrePrincipal, text="4. Volume d'une pyramide à base carrée")
+                framePyramideCarre.configure(font=fontTitle)
                 framePyramideCarre.pack(side=TOP)
-
-                Titre=Label(framePyramideCarre, text="4.Volume d'une pyramide à base carrée")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 cote=Label(framePyramideCarre, text="Coté =")
                 cote.grid(row=1, column=1)
@@ -1195,12 +1140,9 @@ def principal():
 
             def pyramideautre():
                 frameVolume.destroy()
-                framePyramide=Frame(fenetrePrincipal)
+                framePyramide=LabelFrame(fenetrePrincipal, text="5. Volume d'une pyramide")
+                framePyramide.configure(font=fontTitle)
                 framePyramide.pack(side=TOP)
-
-                Titre=Label(framePyramide, text="5.Volume d'une pyramide")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 aireBase=Label(framePyramide, text="Aire de la base =")
                 aireBase.grid(row=1, column=1)
@@ -1237,12 +1179,9 @@ def principal():
 
             def cone():
                 frameVolume.destroy()
-                frameCone=Frame(fenetrePrincipal)
+                frameCone=LabelFrame(fenetrePrincipal, text="6. Volume d'un cône")
+                frameCone.configure(font=fontTitle)
                 frameCone.pack(side=TOP)
-
-                Titre=Label(frameCone, text="6.Volume d'un cône")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 rayon=Label(frameCone, text="Rayon =")
                 rayon.grid(row=1, column=1)
@@ -1279,12 +1218,9 @@ def principal():
 
             def sphere():
                 frameVolume.destroy()
-                frameSphere=Frame(fenetrePrincipal)
+                frameSphere=LabelFrame(fenetrePrincipal, text="7. Volume d'une sphère")
+                frameSphere.configure(font=fontTitle)
                 frameSphere.pack(side=TOP)
-
-                Titre=Label(frameSphere, text="7.Volume d'une sphère")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 entree=Spinbox(frameSphere, textvariable=int, width=50, from_=0, to=1000000)
                 entree.grid(row=1,column=1)
@@ -1359,12 +1295,9 @@ def principal():
 
             def ordre():
                 frameDenombrement.destroy()
-                frameOrdre=Frame(fenetrePrincipal)
+                frameOrdre=LabelFrame(fenetrePrincipal, text="1. Ordre pris en compte")
+                frameOrdre.configure(font=fontTitle)
                 frameOrdre.pack()
-
-                Titre=Label(frameOrdre, text="1. Ordre pris en compte")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 N=Label(frameOrdre, text="L'effectif N = ")
                 N.grid(row=1,column=1)
@@ -1404,12 +1337,9 @@ def principal():
 
             def noOrdre():
                 frameDenombrement.destroy()
-                frameNoOrdre=Frame(fenetrePrincipal)
+                frameNoOrdre=Frame(fenetrePrincipal, text="2. Ordre non pris en compte")
+                frameNoOrdre.configure(font=fontTitle)
                 frameNoOrdre.pack()
-
-                Titre=Label(frameNoOrdre, text="2. Ordre non pris en compte")
-                Titre.configure(font=fontTitle)
-                Titre.grid(row=0, column=1)
 
                 N=Label(frameNoOrdre, text="L'effectif N = ")
                 N.grid(row=1,column=1)
@@ -1469,7 +1399,7 @@ def principal():
     
     def chap3Menu():
         framePrincipal.destroy()
-        framePremier=Frame(fenetrePrincipal)
+        framePremier=LabelFrame(fenetrePrincipal, text="Nombre Premier")
         framePremier.pack()
 
         entree=Spinbox(framePremier, textvariable=int, width=50, from_=0, to=1000000)
@@ -1498,12 +1428,9 @@ def principal():
 
         def distance():
             frameChap4.pack_forget()
-            frameDistance=Frame(fenetrePrincipal)
+            frameDistance=LabelFrame(fenetrePrincipal, text="1. Conversions de Distance")
+            frameDistance.configure(font=fontTitle)
             frameDistance.pack()
-
-            Titre=Label(frameDistance, text="1. Conversion de Distance")
-            Titre.configure(font=fontTitle)
-            Titre.grid(row=0, column=1)
 
             resultatConvertis=StringVar()
 
@@ -1855,14 +1782,13 @@ def principal():
         
         def surface():
             frameChap4.pack_forget()
-            frameSurface=Frame(fenetrePrincipal)
+            frameSurface=LabelFrame(fenetrePrincipal, text="2. Conversion de Surface")
+            frameSurface.configure(font=fontTitle)
             frameSurface.pack()
 
-            Titre=Label(frameSurface, text="2. Conversion de Surface")
-            Titre.configure(font=fontTitle)
-            Titre.grid(row=0, column=1)
-
             resultatConvertis=StringVar()
+            unite1=StringVar()
+            unite2=StringVar()
 
             def valider():
                 entree2.grid_forget()
@@ -1871,31 +1797,60 @@ def principal():
 
                 if surface1.get() == 'kilomètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())))
+                        resultatConvertis.set(str(float(entree1.get()))+" km²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" hm²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        resultatConvertis.set(str(float(entree1.get())*10**4)+" dam²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        resultatConvertis.set(str(float(entree1.get())*10**6)+" m²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        resultatConvertis.set(str(float(entree1.get())*10**8)+" dm²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        resultatConvertis.set(str(float(entree1.get())*10**10)+" cm²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        resultatConvertis.set(str(float(entree1.get())*10**12)+" mm²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**18))
+                        resultatConvertis.set(str(float(entree1.get())*10**18)+" µm²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**24))
+                        resultatConvertis.set(str(float(entree1.get())*10**24)+" nm²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**6)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**7)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**9)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39)+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -1903,31 +1858,51 @@ def principal():
                 
                 if surface1.get() == 'hectomètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        resultatConvertis.set(str(float(entree1.get())*10**-2)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())))
+                        resultatConvertis.set(str(float(entree1.get()))+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        resultatConvertis.set(str(float(entree1.get())*10**4)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        resultatConvertis.set(str(float(entree1.get())*10**6)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10*8))
+                        resultatConvertis.set(str(float(entree1.get())*10*8)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        resultatConvertis.set(str(float(entree1.get())*10**10)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**16))
+                        resultatConvertis.set(str(float(entree1.get())*10**16)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**22))
+                        resultatConvertis.set(str(float(entree1.get())*10**22)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**5)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**6)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**8)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-1))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -1935,31 +1910,51 @@ def principal():
                 
                 if surface1.get() == 'décamètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        resultatConvertis.set(str(float(entree1.get())*10**-4)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        resultatConvertis.set(str(float(entree1.get())*10**-2)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        resultatConvertis.set(str(float(entree1.get())*10**4)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        resultatConvertis.set(str(float(entree1.get())*10**6)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        resultatConvertis.set(str(float(entree1.get())*10**8)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**14))
+                        resultatConvertis.set(str(float(entree1.get())*10**14)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**20))
+                        resultatConvertis.set(str(float(entree1.get())*10**20)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**1)+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**4)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**5)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**7)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-2))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -1967,31 +1962,51 @@ def principal():
                     
                 if surface2.get() == 'mètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        resultatConvertis.set(str(float(entree1.get())*10**-6)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        resultatConvertis.set(str(float(entree1.get())*10**-4)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        resultatConvertis.set(str(float(entree1.get())*10**-2)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        resultatConvertis.set(str(float(entree1.get())*10**4)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        resultatConvertis.set(str(float(entree1.get())*10**6)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        resultatConvertis.set(str(float(entree1.get())*10**12)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**18))
+                        resultatConvertis.set(str(float(entree1.get())*10**18)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**3)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**4)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**6)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-3))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -1999,31 +2014,51 @@ def principal():
                 
                 if surface1.get() == 'décimètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        resultatConvertis.set(str(float(entree1.get())*10**-8)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        resultatConvertis.set(str(float(entree1.get())*10**-6)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        resultatConvertis.set(str(float(entree1.get())*10**-4)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        resultatConvertis.set(str(float(entree1.get())*10**-2)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**4))
+                        resultatConvertis.set(str(float(entree1.get())*10**4)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**10))
+                        resultatConvertis.set(str(float(entree1.get())*10**10)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**16))
+                        resultatConvertis.set(str(float(entree1.get())*10**16)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**(-1))+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**2)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**3)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**5)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-4))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -2031,31 +2066,51 @@ def principal():
                 
                 if surface1.get() == 'centimètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        resultatConvertis.set(str(float(entree1.get())*10**-10)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        resultatConvertis.set(str(float(entree1.get())*10**-8)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        resultatConvertis.set(str(float(entree1.get())*10**-6)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        resultatConvertis.set(str(float(entree1.get())*10**-4)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        resultatConvertis.set(str(float(entree1.get())*10**-2)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**2))
+                        resultatConvertis.set(str(float(entree1.get())*10**2)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**8))
+                        resultatConvertis.set(str(float(entree1.get())*10**8)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**14))
+                        resultatConvertis.set(str(float(entree1.get())*10**14)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**(-2))+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**1)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**2)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**4)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-5))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -2063,31 +2118,51 @@ def principal():
                 
                 if surface1.get() == 'millimètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        resultatConvertis.set(str(float(entree1.get())*10**-12)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        resultatConvertis.set(str(float(entree1.get())*10**-10)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        resultatConvertis.set(str(float(entree1.get())*10**-8)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        resultatConvertis.set(str(float(entree1.get())*10**-6)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-4))
+                        resultatConvertis.set(str(float(entree1.get())*10**-4)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-2))
+                        resultatConvertis.set(str(float(entree1.get())*10**-2)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        resultatConvertis.set(str(float(entree1.get())*10**6)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**12))
+                        resultatConvertis.set(str(float(entree1.get())*10**12)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**(-3))+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**0)+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**1)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**3)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-6))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -2095,31 +2170,51 @@ def principal():
                 
                 if surface1.get() == 'micromètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-18))
+                        resultatConvertis.set(str(float(entree1.get())*10**-18)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-16))
+                        resultatConvertis.set(str(float(entree1.get())*10**-16)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-14))
+                        resultatConvertis.set(str(float(entree1.get())*10**-14)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        resultatConvertis.set(str(float(entree1.get())*10**-12)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-10))
+                        resultatConvertis.set(str(float(entree1.get())*10**-10)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-8))
+                        resultatConvertis.set(str(float(entree1.get())*10**-8)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        resultatConvertis.set(str(float(entree1.get())*10**-6)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**6))
+                        resultatConvertis.set(str(float(entree1.get())*10**6)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**(-4))+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**(-1))+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**0)+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**2)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-7))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
@@ -2127,35 +2222,57 @@ def principal():
                 
                 if surface1.get() == 'micromètre²':
                     if surface2.get() == 'kilomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-24))
+                        resultatConvertis.set(str(float(entree1.get())*10**-24)+" km²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'hectomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-22))
+                        resultatConvertis.set(str(float(entree1.get())*10**-22)+" hm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décamètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-20))
+                        resultatConvertis.set(str(float(entree1.get())*10**-20)+" dam²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'mètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-18))
+                        resultatConvertis.set(str(float(entree1.get())*10**-18)+" m²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'décimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-16))
+                        resultatConvertis.set(str(float(entree1.get())*10**-16)+" dm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'centimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-14))
+                        resultatConvertis.set(str(float(entree1.get())*10**-14)+" cm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'millimètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-12))
+                        resultatConvertis.set(str(float(entree1.get())*10**-12)+" mm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'micromètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**-6))
+                        resultatConvertis.set(str(float(entree1.get())*10**-6)+" µm²")
                         entree2.grid(row=3,column=3)
                     elif surface2.get() == 'nanomètre²':
-                        resultatConvertis.set(str(float(entree1.get())*10**0))
+                        resultatConvertis.set(str(float(entree1.get())*10**0)+" nm²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'hectare':
+                        resultatConvertis.set(str(float(entree1.get())*10**(-5))+" ha")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'yard²':
+                        resultatConvertis.set(str(float(entree1.get())*1.2*10**(-2))+" yard²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pied²':
+                        resultatConvertis.set(str(float(entree1.get())*1.076*10**(-1))+" pied²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'pouce²':
+                        resultatConvertis.set(str(float(entree1.get())*1.6*10**1)+" pouce²")
+                        unite1.set("km²")
+                        entree2.grid(row=3,column=3)
+                    elif surface2.get() == 'mille²':
+                        resultatConvertis.set(str(float(entree1.get())*0.39*10**(-8))+" mille²")
+                        unite1.set("km²")
                         entree2.grid(row=3,column=3)
                     else :
                         resultatConvertis.set("ERROR")
                         entree2.grid(row=3,column=3)
+                
+                
 
                 
             
@@ -2171,11 +2288,16 @@ def principal():
                                 'millimètre²',
                                 'micromètre²',
                                 'nanomètre²',
+                                #'hectare',
+                                #'yard²',
+                                #'pied²',
+                                #'pouce²',
+                                #'mille²',
                                 '         ')
             surface1.current(9)
 
             surface2=ttk.Combobox(frameSurface)
-            surface2.grid(row=2,column=3)
+            surface2.grid(row=2,column=4)
 
             surface2['values']=('kilomètre²',
                                 'hectomètre²',
@@ -2186,13 +2308,21 @@ def principal():
                                 'millimètre²',
                                 'micromètre²',
                                 'nanomètre²',
+                                'hectare',
+                                'yard²',
+                                'pied²',
+                                'pouce²',
+                                'mille²',
                                 '          ')
-            surface2.current(9)
+            surface2.current(14)
+
+            uniteLabel1=Label(frameSurface, textvariable=unite1)
+            uniteLabel1.grid(row=3,column=2)
 
             fleche1=Label(frameSurface, text="=>")
-            fleche1.grid(row=2,column=2)
+            fleche1.grid(row=2,column=3)
             fleche2=Label(frameSurface, text="=>")
-            fleche2.grid(row=3,column=2)
+            fleche2.grid(row=3,column=3)
 
             entree1=Spinbox(frameSurface, textvariable=int, width=50, from_=0, to=1000000)
             entree1.grid(row=3,column=1)
@@ -2200,10 +2330,10 @@ def principal():
             
 
             entree2=Label(frameSurface, textvariable=resultatConvertis, width=50)
-            entree2.grid(row=3,column=3)
+            entree2.grid(row=3,column=4)
 
             valider=Button(frameSurface, text="Valider", command=valider)
-            valider.grid(row=3, column=4)
+            valider.grid(row=3, column=6)
 
             def retourSurface():
                 frameSurface.destroy()
@@ -2227,13 +2357,9 @@ def principal():
 
     def chap5Menu():
         framePrincipal.destroy()
-        frameChap5=Frame(fenetrePrincipal)
+        frameChap5=LabelFrame(fenetrePrincipal, text="5. Triangles rectangles")
+        frameChap5.configure(font=fontTitle)
         frameChap5.pack()
-
-        Titre=Label(frameChap5, text="5. Triangle rectangles")
-        Titre.configure(font=fontTitle)
-        Titre.grid(row=0, column=1)
-
 
 
         def valider():
@@ -2276,12 +2402,9 @@ def principal():
     
     def chap6Menu():
         framePrincipal.destroy()
-        frameChap6=Frame(fenetrePrincipal)
+        frameChap6=LabelFrame(fenetrePrincipal, text="6. Dérivation")
+        frameChap6.configure(font=fontTitle)
         frameChap6.pack()
-
-        Titre=Label(frameChap6, text="6. Dérivation")
-        Titre.configure(font=fontTitle)
-        Titre.grid(row=0, column=1)
 
         x=Symbol('x')
 
@@ -2293,7 +2416,7 @@ def principal():
 
         resultatValeur=StringVar()
 
-        fonctionsEntree=Entry(frameChap6, width=20)
+        fonctionsEntree=Entry(frameChap6, width=100)
         fonctionsEntree.grid(row=1,column=2)
         fonctionsDerive=Label(frameChap6, textvariable=resultatValeur, width=20, pady=5)
         fonctionsDerive.grid(row=3,column=2)
@@ -2331,12 +2454,12 @@ def principal():
 
 fenetrePrincipal = Tk()
 fenetrePrincipal.title('CALCUL V3.0')
+fenetrePrincipal.configure(background='gray70')
 
-
-frameExit=Frame(fenetrePrincipal, borderwidth=2)
+frameExit=Frame(fenetrePrincipal, padx=200, background='gray70')
 frameExit.pack(side=BOTTOM)
 
-close=Button(frameExit, text="Fermer", command=fenetrePrincipal.quit, background="red", width=10, heigh=5)
+close=Button(frameExit, text="Fermer", command=fenetrePrincipal.quit, background="red", activebackground="red", width=10, heigh=5)
 close.grid(row=1,column=1)
 
 #Commande de plein écran
@@ -2351,6 +2474,5 @@ fenetrePrincipal.bind('<Escape>', lambda e: fullscreenDestroy())
 fenetrePrincipal.bind('<F11>', lambda e: fullscreenActive())
 
 principal()
-
 
 fenetrePrincipal.mainloop()
